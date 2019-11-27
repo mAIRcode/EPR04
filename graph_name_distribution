@@ -1,0 +1,20 @@
+from anytree import Node, RenderTree
+# DotExporter only needed for fancy version (see last line)
+from anytree.exporter import DotExporter
+identities = Node("Identities")
+male = Node("Male 50%", parent=identities)
+female = Node("Female 50%", parent=identities)
+# male
+double1male = Node("Double-barrelled first name 10%", parent=male)
+double2male = Node("Double-barrelled last name 15%", parent=male)
+phdm = Node("Titled 0.55%", parent=male)
+# female
+double2female = Node("Double-barrelled last name 15%", parent=female)
+double1female = Node("Double-barrelled first name 10%", parent=female)
+phdf = Node("Titled 0.45%", parent=female)
+
+for pre, fill, node in RenderTree(identities):
+     print("%s%s" % (pre, node.name))
+     
+# FANY VERSION: prints graph as .png
+# DotExporter(identities).to_picture("identities.png")
